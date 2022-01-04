@@ -1,0 +1,63 @@
+﻿@page
+@model AZTechInt.Pages.ZamowienieModel
+@{
+}
+<container>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Formularz zamówienia</h1>
+            <p class="lead">Uzupełnij dane i złóż zamówienie</p>
+        </div>
+    </div>
+    <form method="post" asp-page-handler="">
+        <div class="form-group col-4 offset-4">
+            <label for="ImieNazwisko">Imię i Nazwisko</label>
+            <input type="text" class="form-control" id="ImieNazwisko" name="ImieNazwisko" placeholder="Wprowadź imię i nazwisko">
+        </div>
+        <div class="form-group  col-4 offset-4">
+            <label for="AdresEmail">Adres email</label>
+            <input type="email" class="form-control" id="AdresEmail" name="AdresEmail" aria-describedby="emailHelp" placeholder="Wprowadź adres email">
+            <small id="emailHelp" class="form-text text-muted">Dbamy o Twoje dane</small>
+        </div>
+        <div class="form-group  col-4 offset-4">
+            <label for="Telefon">Numer telefonu</label>
+            <input type="tel" class="form-control" id="Telefon" name="Telefon" placeholder="Telefon">
+        </div>
+        <div class="form-group  col-4 offset-4">
+            <label for="RezerwacjaOd">Data od</label>
+            <input type="date" class="form-control" id="RezerwacjaOd" name="RezerwacjaOd">
+        </div>
+        <div class="form-group  col-4 offset-4">
+            <label for="RezerwacjaDo">Data do</label>
+            <input type="date" class="form-control" id="RezerwacjaDo" name="RezerwacjaDo">
+        </div>
+        <div class="form-group  col-4 offset-4">
+            <label for="DodatkoweProsby">Dodatkowe prośby</label>
+            <textarea class="form-control" id="DodatkoweProsby" name="DodatkoweProsby" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Zapisz dane i załóż zamówienie</button>
+        <div class="form-group col-4 offset-4">
+            <div class="invisible"><input type="text" class="form-control" id="LodzId" name="LodzId" value="@Model.lm.LodzId"></div>
+            
+        </div>
+    </form>
+    @if (!string.IsNullOrWhiteSpace(Model.zam.NadanyNumer))
+    {
+
+
+        @if (Model.zam.NadanyNumer == "brak")
+        {
+            <div class="text-center">
+                <h1>Nie można wynając tego jachtu w tym terminie, jest zajęty!</h1>
+            </div>
+        }@if (Model.zam.NadanyNumer != "brak")
+        {   
+            <div class="text-center">
+                <h1>Przyjęto Twoje zamówienie!</h1>
+                <h2>numer zamówienia: @Model.zam.NadanyNumer</h2>
+                <h3>Suma za wynajem: @Model.zam.Suma</h3>
+            </div>
+        }
+    }
+
+</container>

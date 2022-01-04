@@ -1,0 +1,29 @@
+﻿@page
+@model AZTechInt.Pages.LodzieModel
+@{
+}
+<div class="container-fluid">
+    @foreach (var l in Model.list)
+    {
+    <div class="row align-items-center">
+        <div class="col">
+            <img src="@l.Zdjecie" />
+        </div>
+        <div class="col font-weight-bold">
+            <h3>@l.Nazwa</h3>
+            <a class="text-primary">Rodzaj: @l.Rodzaj</a>
+            <a>Długość: @l.Dlugosc</a>
+            <a>Wysokość: @l.Wysokosc</a>
+            <a class="text-danger">LiczbaMiejsc: @l.LiczbaMiejsc</a>
+            
+        </div>
+        <div class="col font-weight-bold">
+            <h4>Cena: @l.Koszt</h4>
+        </div>
+        <div class="col">
+            <a asp-page="/Zamowienie" asp-route-LodzId="@l.LodzId"
+               class="btn btn-info btn-lg btn-block">Zamów</a>
+        </div>
+    </div>
+    }
+</div>
